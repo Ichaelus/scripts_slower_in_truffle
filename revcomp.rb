@@ -1,3 +1,6 @@
+
+require 'benchmark'
+
 # The Computer Language Benchmarks Game
 # http://benchmarksgame.alioth.debian.org
 #
@@ -43,4 +46,12 @@ def run(size)
   output_file.close
 end
 
-run(1000000)
+
+puts "Warmup: 100 iters"
+100.times do run(1000000) end
+ 
+puts "Benchmark: 500 iters"
+t = Time.now
+500.times do run(1000000) end
+puts "Time used: #{Time.now - t} seconds"
+
